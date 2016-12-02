@@ -14,7 +14,13 @@
                 </div>
                 <div class="panel-footer">
                     <a class="btn btn-primary btn-sm">Comment</a>
+                    @if(Auth::user()->id == $post->user->id)
                     <a class="btn btn-default btn-sm" href="{{ url('/post/' . $post->id . '/edit') }}">Edit</a>
+                    <form action="{{ url('/post/' . $post->id) }}" method="POST" style="display:inline">
+                        <input name="_method" type="hidden" value="DELETE"/>
+                        {{ csrf_field() }}
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
