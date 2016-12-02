@@ -23,6 +23,7 @@
         .fa-btn {
             margin-right: 6px;
         }
+    @yield('style')
     </style>
 </head>
 <body id="app-layout">
@@ -59,7 +60,7 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->nickname }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
