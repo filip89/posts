@@ -20,22 +20,27 @@ class PostController extends Controller
         return 'post_controller@create';
     }
     
-    public function store()
+    public function store(Request $request, $id)
     {
         
     }
     
-    public function edit()
+    public function details($id)
+    {
+        return 'post_controller@details';
+    }
+    
+    public function edit($id)
     {
         
     }
     
-    public function update()
+    public function update(Request $request, $id)
     {
         
     }
     
-    public function delete()
+    public function delete($id)
     {
         
     }
