@@ -12,12 +12,12 @@ class PostController extends Controller
     
     public function index()
     {
-        
+        return 'post_controller@index';
     }
     
     public function create()
     {
-        
+        return 'post_controller@create';
     }
     
     public function store()
