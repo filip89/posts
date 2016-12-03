@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::auth();
 
+
+//PostController routes
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/post', 'PostController@index');
@@ -33,3 +36,11 @@ Route::put('/post/{id}', 'PostController@update');
 
 Route::delete('/post/{id}', 'PostController@delete');
 
+
+//CommentController routes
+
+Route::post('/comment', 'CommentController@store');
+
+Route::put('/comment/{id}', 'CommentController@update');
+
+Route::delete('/comment/{id}', 'CommentController@delete');
