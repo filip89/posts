@@ -12,6 +12,8 @@ use App\Post;
 
 use App\User;
 
+use Auth;
+
 class CommentController extends Controller
 {
     //
