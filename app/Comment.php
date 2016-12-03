@@ -8,6 +8,10 @@ class Comment extends Model
 {
     //
     
+    protected $fillable = [
+        'content',
+    ];
+    
     //relationships
     
     public function post()
