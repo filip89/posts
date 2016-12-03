@@ -56,7 +56,9 @@ class PostController extends Controller
     {
         
         $post = Post::find($id);
-        return view('post/details', ['post' => $post]);
+        $comments = $post->comments;
+        
+        return view('post/details', ['post' => $post, 'comments' => $comments]);
         
     }
     
@@ -64,6 +66,7 @@ class PostController extends Controller
     {
         
         $post = Post::find($id);
+        
         return view('post/edit', ['post' => $post]);
         
     }
