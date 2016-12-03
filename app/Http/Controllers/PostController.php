@@ -36,7 +36,7 @@ class PostController extends Controller
         
         $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(10);
         
-        return view('/post/index', ['posts' => $posts]);
+        return view('/post/myposts', ['posts' => $posts]);
         
     }
     

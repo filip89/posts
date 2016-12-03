@@ -10,7 +10,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <b>{{ $post->user->nickname }}:</b> {{ $post->title }} {{ $post->updated_at}}
+                    <b>{{ $post->user->nickname }}:</b> {{ $post->title }} {{ date_format($post->created_at,"H:i:s | d.m.Y.") }}
                 </div>
 
                 <div class="panel-body">
