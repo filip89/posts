@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
 @section('style')
-.comment_field
+.comment{
+    padding: 5px;
+}
+.post_title{
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 @endsection
 
 @section('content')
@@ -10,10 +18,14 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <b>{{ $post->user->nickname }}:</b> {{ $post->title }} {{ date_format($post->created_at,"H:i:s | d.m.Y.") }}
+                    <b>{{ $post->user->nickname }}</b> <small>posted at {{ date_format($post->created_at,"H:i | d.m.Y.") }}</small>
+                    @if($post->created_at != $post->updated_at)
+                    <small>(updated at {{ date_format($post->updated_at,"H:i | d.m.Y.") }})</small>
+                    @endif
                 </div>
 
                 <div class="panel-body">
+                    <div  class="post_title">{{ $post->title }}</div>
                     {{ $post->content }}
                 </div>
                 @if(Auth::user() && Auth::user()->id == $post->user->id)
@@ -29,16 +41,19 @@
             </div>
 
             @foreach($comments as $comment)
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <b>{{ $comment->user->nickname }}:</b> {{ $comment->updated_at }}
+            <div class="panel panel-default comment">
+                <div>
+                    <b>{{ $comment->user->nickname }}</b> <small>commented at {{ date_format($comment->created_at,"H:i | d.m.Y.") }}</small>
+                    <small>@if($comment->created_at != $comment->updated_at)</small>
+                    (updated at {{ date_format($comment->updated_at,"H:i | d.m.Y.") }})
+                    @endif
                 </div>
 
                 <div class="panel-body">
                     {{ $comment->content }}
                 </div>
                 @if(Auth::user() && Auth::user()->id == $comment->user->id)
-                <div class="panel-footer">
+                <div>
                     <a id="comment_edit" class="btn btn-warning btn-xs">Edit</a>
                     <form action="{{ url('/comment/' . $comment->id) }}" method="POST" style="display:inline">
                         {{ csrf_field() }}

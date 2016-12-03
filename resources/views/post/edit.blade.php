@@ -5,11 +5,12 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <a href="{{ url('/post/' . $post->id) }}"><-Back to post</a>
-            <div class="panel panel-default">
+            <div class="panel panel-warning">
                 <div class="panel-heading">Edit post</div>
                 <div class="panel-body">
-                    <form action="{{ url('/post') }}" method="POST">
+                    <form action="{{ url('/post/' . $post->id) }}" method="POST">
                         {{ csrf_field() }}
+                        <input name="_method" type="hidden" value="PUT"/>
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="control-label">Title: </label>
                             <div>
