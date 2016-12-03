@@ -36,6 +36,8 @@ Route::put('/post/{id}', 'PostController@update');
 
 Route::delete('/post/{id}', 'PostController@delete');
 
+Route::get('/myposts', 'PostController@myPosts');
+
 
 //CommentController routes
 

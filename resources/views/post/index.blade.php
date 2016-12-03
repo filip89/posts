@@ -25,6 +25,9 @@
                 </div>
             </div>
             @endforeach
+            <div style="display:table;margin:auto;">
+            {{ $posts->links() }}
+            </div>
         </div>
     </div>
 </div>
