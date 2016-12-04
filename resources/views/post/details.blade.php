@@ -113,15 +113,9 @@
                     <textarea class="form-control" id="comment_content_input" name="content" placeholder="Leave a comment here..." required></textarea>
                     <input name="post_id" type="hidden" value="{{ $post->id }}"/>
                     <button id="comment_submit" class="btn btn-primary btn-xs" type="submit" style="display:none"></button>
-                    <button id="comment_cancel" class="btn btn-danger btn-xs">Cancel</button>
                 </form>
                 @else
                 <textarea class="form-control" id="comment_content_input" name="content" placeholder="You need to be logged in to comment!" disabled></textarea>
-                @endif
-                @if(Auth::user())
-                <a id="comment_toggle" class="btn btn-primary btn-sm"><i class="fa fa-btn fa-pencil-square-o"></i><span>Leave a comment</span></a>
-                @else
-                <a href="{{ url('/login') }}" class="btn btn-primary btn-sm"><i class="fa fa-btn fa-pencil-square-o"></i><span>Leave a comment</span></a>
                 @endif
             </div>
         </div>
