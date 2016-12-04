@@ -1,8 +1,43 @@
 @extends('layouts.app')
 
 @section('style')
+.table {
+    width:100%;
+}
 .own_post {
-    background-color: #e6f3ff;
+    background-color: #f2f2f2;
+}
+thead {
+    background-color: #595959;
+    color: white;
+}
+th:nth-child(2) {
+    width: 50%;
+}
+th:nth-child(2){
+    width: 15%;
+}
+th:nth-child(3){
+    width: 15%;
+}
+th:nth-child(4){
+    width: 20%;
+}
+a:hover {
+    text-decoration: none;
+}
+#filter {
+    float: right;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+.table-responsive{
+    clear: both;
+}
+#create_btn {
+    float: left;
+    margin-bottom: 10px;
 }
 @endsection('style')
 
@@ -10,7 +45,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div><a class="btn btn-primary new_post" href="{{ url('/post/create') }}">Create new post</a></div>
+            <div id="create_btn"><a class="btn btn-default new_post" href="{{ url('/post/create') }}"><i class="fa fa-btn fa-file-text-o"></i>Create new post</a></div>
+            @if(Auth::user())
+            <div id="filter">
+                <form action="{{ url('/post') }}" method="GET">
+                    <input type="checkbox" name="userOnly" {{ $filter ? 'checked' : ''}} onchange="this.parentNode.submit()"> <b>My posts only</b></input>
+                </form>
+            </div>
+            @endif
             <div class="table-responsive">
                 <table class="table">
                 <thead>
@@ -26,7 +68,7 @@
                 @foreach($posts as $post)
                     <tr class="{{Auth::user() ? (Auth::user()->id == $post->user->id ? 'own_post' : '') : ''}}">
                         <td>
-                            <a href="{{ url('/post/' . $post->id) }}">{{ $post->title }}</a>
+                            <a href="{{ url('/post/' . $post->id) }}"><b>{{ $post->title }}</b></a>
                         </td>
                         <td>
                             @if(Auth::user() && Auth::user()->id == $post->user->id)
@@ -46,7 +88,7 @@
                 </table>
             </div>
             <div style="display:table;margin:auto;">
-            {{ $posts->links() }}
+            {{ $posts->appends(['userOnly'=>$filter])->links() }}
             </div>
         </div>
     </div>

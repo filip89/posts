@@ -22,19 +22,30 @@ class PostController extends Controller
     }
     
     
-    public function index()
+    public function index(Request $request)
     {    
         
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
-        
-        return view('post/index', ['posts' => $posts]); 
+        if(Auth::user() && $request->userOnly == 'on'){
+            
+            $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(2);
+            $filter = 'on';
+            
+        }
+        else{
+            
+            $posts = Post::orderBy('created_at', 'desc')->paginate(2);
+            $filter = false;
+            
+        }
+
+        return view('post/index', ['posts' => $posts, 'filter' => $filter]); 
         
     }
     
     public function myPosts()
     {
         
-        $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(2);
         
         return view('/post/myposts', ['posts' => $posts]);
         

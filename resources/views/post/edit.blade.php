@@ -4,8 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <a href="{{ url('/post/' . $post->id) }}"><-Back to post</a>
-            <div class="panel panel-warning">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Edit post</div>
                 <div class="panel-body">
                     <form action="{{ url('/post/' . $post->id) }}" method="POST">
@@ -34,7 +33,7 @@
                                 @endif
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-sm" type="submit">Post</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Confirm</button>
                         <a class="btn btn-danger btn-sm" href="{{ url('/post/' . $post->id) }}">Cancel</a>
                     </form>
                 </div>

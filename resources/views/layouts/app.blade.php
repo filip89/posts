@@ -26,6 +26,28 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .footer {
+        height: 50px;
+        }
+        .menu_items li{
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .menu_items i{
+           font-size: 30px;
+           margin-top: 5px; 
+        }
+        .menu_items a{
+           transition: color 0.4s;
+        }
+        .navbar-center {
+            display: table;
+            margin: auto;
+        }
+        .navbar-right {
+            float: right;
+        }
     @yield('style')
     </style>
 </head>
@@ -42,43 +64,31 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/post') }}">Posts</a></li>
-                    <li><a href="{{ url('/myposts') }}"><i class="fa fa-btn fa-user"></i>My posts</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+                <div class="navbar-center">
+                <ul class="nav navbar-nav menu_items">
+                    <li><a href="{{ url('/post') }}">Posts<br/><i class="fa fa-btn fa-file-text"></i></a></li>
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/login') }}">Login<br/><i class="fa fa-btn fa-sign-in"></i></a></li>
+                    <li><a href="{{ url('/register') }}">Register<br/><i class="fa fa-btn fa-user-plus"></i></a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->nickname }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
+                    <li><a href="{{ url('/myposts') }}">My posts<br/><i class="fa fa-btn fa-user"></i></a></li>
+                    <li><a href="{{ url('/logout') }}">Logout<br/><i class="fa fa-btn fa-sign-out"></i></a></li>
+                    @endif 
                 </ul>
+                </div>
+
             </div>
         </div>
     </nav>
 
     @yield('content')
-
+    
+    <div class="footer"></div>
+    
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
