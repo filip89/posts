@@ -63,8 +63,8 @@
                     @endif
                 </div>
 
-                <div class="panel-body">
-                    <div  class="post_title">{{ $post->title }}</div>
+                <div class="panel-body {{Auth::user() ? (Auth::user()->id == $post->user->id ? 'owner' : '') : ''}}">
+                    <div class="post_title">{{ $post->title }}</div>
                     {{ $post->content }}
                 </div>
             </div>
@@ -74,7 +74,7 @@
     @foreach($comments as $comment)
     <div class="row">   
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default comment">
+            <div class="panel panel-default comment {{Auth::user() ? (Auth::user()->id == $comment->user->id ? 'owner' : '') : ''}}">
                 <div>
                     <i class="fa fa-btn fa-pencil"></i><b>{{ $comment->user->nickname }}</b>
                     <small>commented at {{ date_format($comment->created_at,"H:i | d.m.Y.") }}</small>

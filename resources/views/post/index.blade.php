@@ -4,9 +4,6 @@
 .table {
     width:100%;
 }
-.own_post {
-    background-color: #f2f2f2;
-}
 thead {
     background-color: #595959;
     color: white;
@@ -66,7 +63,7 @@ a:hover {
             
                 <tbody>
                 @foreach($posts as $post)
-                    <tr class="{{Auth::user() ? (Auth::user()->id == $post->user->id ? 'own_post' : '') : ''}}">
+                    <tr class="{{Auth::user() ? (Auth::user()->id == $post->user->id ? 'owner' : '') : ''}}">
                         <td>
                             <a href="{{ url('/post/' . $post->id) }}"><b>{{ $post->title }}</b></a>
                         </td>

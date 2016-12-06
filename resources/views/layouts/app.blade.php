@@ -55,6 +55,9 @@
         .navbar-right {
             float: right;
         }
+        .owner {
+            background-color: #f2f2f2;
+        }
         
         @keyframes hover_effect {
             0% {color: #666666;}
