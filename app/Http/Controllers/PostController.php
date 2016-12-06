@@ -69,6 +69,8 @@ class PostController extends Controller
         $post->user()->associate($user);
         $post->save();
         
+        
+        
         return redirect('/post');
         
     }

@@ -45,6 +45,10 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         
+        $this->validate($request, [
+            'content' => 'required|max:2000|required',
+	]);
+        
         $comment = Comment::find($id);
         $comment->content = $request->content;
         $comment->save();
