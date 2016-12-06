@@ -39,13 +39,13 @@
            margin-top: 5px; 
         }
         .nav.navbar-nav li a {
-            color: #f2f2f2;           
+            color: #ffffff;           
         }
         .nav.navbar-nav li a:hover {
             animation: hover_effect 1s infinite;
         }
         .nav.navbar-nav li a:active {
-            color: #f2f2f2;;
+            color: #ffffff;
         }
         .navbar {
             background-color: #b3b3ff;
@@ -62,9 +62,9 @@
         }
         
         @keyframes hover_effect {
-            0% {color: #f2f2f2;}
+            0% {color: #ffffff;}
             50% {color: #d9d9d9;}
-            100% {color: #f2f2f2;}
+            100% {color: #ffffff;}
         }
     @yield('style')
     </style>

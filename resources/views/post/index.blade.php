@@ -5,7 +5,7 @@
     width:100%;
 }
 thead {
-    background-color: #595959;
+    background-color: #6666ff;
     color: white;
 }
 th:nth-child(2) {
@@ -28,6 +28,9 @@ a:hover {
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 5px;
+}
+[type=checkbox]{
+    cursor: pointer;
 }
 .table-responsive{
     clear: both;
