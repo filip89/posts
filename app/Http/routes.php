@@ -20,7 +20,7 @@ Route::auth();
 
 //PostController routes
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'PostController@index');
 
 Route::get('/post', 'PostController@index');
 
@@ -35,8 +35,6 @@ Route::get('/post/{id}/edit', 'PostController@edit');
 Route::put('/post/{id}', 'PostController@update');
 
 Route::delete('/post/{id}', 'PostController@delete');
-
-Route::get('/myposts', 'PostController@myPosts');
 
 
 //CommentController routes

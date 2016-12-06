@@ -27,27 +27,18 @@ class PostController extends Controller
         
         if(Auth::user() && $request->userOnly == 'on'){
             
-            $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(2);
+            $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(10);
             $filter = 'on';
             
         }
         else{
             
-            $posts = Post::orderBy('created_at', 'desc')->paginate(2);
+            $posts = Post::orderBy('created_at', 'desc')->paginate(10);
             $filter = false;
             
         }
 
         return view('post/index', ['posts' => $posts, 'filter' => $filter]); 
-        
-    }
-    
-    public function myPosts()
-    {
-        
-        $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->paginate(2);
-        
-        return view('/post/myposts', ['posts' => $posts]);
         
     }
     
@@ -78,7 +69,8 @@ class PostController extends Controller
     public function details($id)
     {
         
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
+        
         $comments = $post->comments;
         
         return view('post/details', ['post' => $post, 'comments' => $comments]);
@@ -88,7 +80,7 @@ class PostController extends Controller
     public function edit($id)
     {
         
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         
         return view('post/edit', ['post' => $post]);
         
@@ -102,9 +94,7 @@ class PostController extends Controller
             'content' => 'required|max:10000',
 	]);
         
-        $post = Post::find($id);
-        //$post->title = $request->title;
-        //$post->content = $request->content;
+        $post = Post::findOrFail($id);
         $post->fill($request->all());
         $post->save();
         

@@ -110,7 +110,7 @@
                 @if(Auth::user())
                 <form id="comment_form" method="POST" action="{{ url('/comment') }}">
                     {{ csrf_field() }}
-                    <textarea class="form-control comment_content_input" name="content" placeholder="Leave a comment here..." required></textarea>
+                    <textarea class="form-control comment_content_input" name="content" placeholder="Leave a comment here..." maxlength="2000" required></textarea>
                     <input name="post_id" type="hidden" value="{{ $post->id }}"/>
                     <button class="btn btn-primary btn-xs comment_submit" type="submit" style="display:none"></button>
                 </form>
@@ -157,7 +157,7 @@
                 <form id="edit_comment_form" method="POST">
                     <input name="_method" type="hidden" value="PUT"/>
                     {{ csrf_field() }}
-                    <textarea class="form-control" id="edit_comment_content_input" name="content" placeholder="Leave a comment here..." required></textarea>
+                    <textarea class="form-control" id="edit_comment_content_input" name="content" placeholder="Leave a comment here..." maxlength="2000" required></textarea>
                     <button class="btn btn-danger comment_submit" style="display:none"></button>
                 </form>
             </div>
@@ -166,6 +166,27 @@
             </div>
         </div>       
     </div>
+</div>
+
+<!-- Comment error modal -->
+<div id="error_modal" class="modal fade {{ $errors->has('content') ? 'triggered' : '' }}" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">There were errors!</h4>
+      </div>
+      <div class="modal-body" style="color:red">
+            <strong>{{ $errors->first('content') }}</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 @endsection
@@ -196,6 +217,10 @@ function populate_comment_modal(edit_btn){
     var comment_content = $(edit_btn).closest('.panel').find('.comment_content').text();
     $('#edit_comment_form').attr('action', $(edit_btn).data('edit-link'));
     $('#edit_comment_content_input').val(comment_content);
+}
+
+if($('#error_modal').hasClass('triggered')){
+    $('#error_modal').modal('show');
 }
 
 </script>

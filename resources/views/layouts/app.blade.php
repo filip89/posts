@@ -38,8 +38,15 @@
            font-size: 30px;
            margin-top: 5px; 
         }
-        .menu_items a{
-           transition: color 0.4s;
+        .nav.navbar-nav li a {
+            color: #666666;           
+        }
+        .nav.navbar-nav li a:hover {
+            color: #333333;
+            animation: hover_effect 1s infinite;
+        }
+        .navbar {
+            background-color: #b3b3ff;
         }
         .navbar-center {
             display: table;
@@ -47,6 +54,12 @@
         }
         .navbar-right {
             float: right;
+        }
+        
+        @keyframes hover_effect {
+            0% {color: #666666;}
+            50% {color: #333333;}
+            100% {color: #666666;}
         }
     @yield('style')
     </style>
@@ -75,7 +88,6 @@
                     <li><a href="{{ url('/login') }}">Login<br/><i class="fa fa-btn fa-sign-in"></i></a></li>
                     <li><a href="{{ url('/register') }}">Register<br/><i class="fa fa-btn fa-user-plus"></i></a></li>
                     @else
-                    <li><a href="{{ url('/myposts') }}">My posts<br/><i class="fa fa-btn fa-user"></i></a></li>
                     <li><a href="{{ url('/logout') }}">Logout<br/><i class="fa fa-btn fa-sign-out"></i></a></li>
                     @endif 
                 </ul>
